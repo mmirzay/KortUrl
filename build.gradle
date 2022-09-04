@@ -1,0 +1,84 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '2.4.3' apply false
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE' apply false
+    id 'java'
+    id 'maven-publish'
+    id 'com.google.cloud.tools.jib' version '3.1.4' apply false
+}
+
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+subprojects {
+
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+
+
+    group = 'com.kurl'
+    version = '1.0.0-SNAPSHOT'
+    sourceCompatibility = '11'
+
+
+    repositories {
+        mavenCentral()
+    }
+
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-webflux'
+        implementation 'org.apache.commons:commons-lang3'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
+        testCompileOnly 'org.projectlombok:lombok'
+        runtimeOnly 'com.h2database:h2'
+        implementation 'org.postgresql:postgresql:42.2.23'
+        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        implementation 'commons-io:commons-io:2.11.0'
+        implementation 'javax.validation:validation-api:2.0.1.Final'
+        implementation 'org.springframework.boot:spring-boot-starter-validation:2.5.3'
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+        implementation 'org.springframework.boot:spring-boot-starter-webflux'
+        implementation 'io.micrometer:micrometer-registry-prometheus:1.8.0'
+        implementation 'org.apache.logging.log4j:log4j-api:2.17.0'
+        implementation 'org.apache.logging.log4j:log4j-to-slf4j:2.17.0'
+        testImplementation 'org.mockito:mockito-inline:4.3.1'
+    }
+
+    test {
+        useJUnitPlatform()
+        testLogging {
+            exceptionFormat = 'full'
+        }
+    }
+    if (it.name == 'kurl') {
+        bootJar {
+            enabled = true
+        }
+    } else {
+        bootJar {
+            enabled = false
+        }
+    }
+    jar {
+        enabled = true
+    }
+}
+
+

@@ -1,0 +1,25 @@
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId 'korturl'
+            from components.java
+        }
+    }
+}
+
+dependencies {
+    implementation 'org.hibernate:hibernate-envers'
+    implementation 'com.hazelcast:hazelcast-spring:5.0'
+    implementation 'com.hazelcast:hazelcast-kubernetes:2.2.3'
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'com.hazelcast:hazelcast-spring:5.0'
+    implementation 'com.vladmihalcea:hibernate-types-52:1.0.0'
+
+}
+
+jar {
+    preserveFileTimestamps false
+    reproducibleFileOrder true
+}
