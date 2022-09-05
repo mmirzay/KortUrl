@@ -4,4 +4,5 @@ import com.project.my.in.CreateShortUrlInDto;
 
 public interface KortUrlService {
     String createShortUrl(CreateShortUrlInDto dto);
+    String getLongUrl(String shortUrl);
 }
