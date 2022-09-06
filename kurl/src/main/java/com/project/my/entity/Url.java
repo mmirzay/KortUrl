@@ -1,5 +1,6 @@
 package com.project.my.entity;
 
+import com.project.my.configuration.Constants;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,10 +17,10 @@ public class Url {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = Constants.LONG_URL_MAX_LENGTH)
     private String longUrl;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = Constants.SHORT_URL_MAX_LENGTH)
     private String shortUrl;
 
 }

@@ -1,6 +1,6 @@
 package com.project.my.in;
 
-import static com.project.my.configuration.Constants.URL_MAX_LENGTH;
+import static com.project.my.configuration.Constants.LONG_URL_MAX_LENGTH;
 
 import com.project.my.entity.Url;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class CreateShortUrlInDto {
     @NotEmpty(message = "in.url.create.short.url.not.empty")
-    @Size(max = URL_MAX_LENGTH, message = "in.url.create.short.url.size.limit")
+    @Size(max = LONG_URL_MAX_LENGTH, message = "in.url.create.short.url.size.limit")
     private String url;
 
     public Url toUrl(String shortUrl) {
